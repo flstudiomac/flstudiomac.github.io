@@ -1,10 +1,606 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>StudioMac — Music Production</title>
+
+  <meta
+    name="description"
+    content="StudioMac is a modern music production platform for Mac."
+  >
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Hello World!</h1>
-    <p>Welcome to my website.</p>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-content">
+
+      <a href="#" class="logo">
+        <span class="logo-icon">S</span>
+        <span>Studio<span>Mac</span></span>
+      </a>
+
+      <nav id="navMenu">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#download">Download</a>
+      </nav>
+
+      <a href="#download" class="nav-button">Get StudioMac</a>
+
+      <button class="menu-btn" id="menuBtn">
+        ☰
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+      <div class="hero-bg"></div>
+
+      <div class="container hero-content">
+
+        <div class="hero-text">
+
+          <div class="badge">
+            <span class="dot"></span>
+            Built for Mac creators
+          </div>
+
+          <h1>
+            Make music.
+            <span>Make magic.</span>
+          </h1>
+
+          <p>
+            A powerful modern music production experience designed
+            for producers, beatmakers and musicians.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#download" class="primary-btn">
+              Download for Mac
+              <span>↓</span>
+            </a>
+
+            <a href="#features" class="secondary-btn">
+              Explore features
+            </a>
+          </div>
+
+          <div class="hero-info">
+            <span>✓ macOS compatible</span>
+            <span>✓ Free trial</span>
+            <span>✓ No credit card</span>
+          </div>
+
+        </div>
+
+
+        <!-- MUSIC APP MOCKUP -->
+        <div class="studio-window">
+
+          <div class="window-top">
+            <div class="window-buttons">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+
+            <span>StudioMac</span>
+
+            <div class="window-status">
+              ● 128 BPM
+            </div>
+          </div>
+
+
+          <div class="transport">
+
+            <button>◀</button>
+            <button class="play-btn">▶</button>
+            <button>■</button>
+
+            <div class="time">
+              00:01:28
+            </div>
+
+            <div class="tempo">
+              128 BPM
+            </div>
+
+          </div>
+
+
+          <div class="sequencer">
+
+            <div class="track-labels">
+
+              <div>Kick</div>
+              <div>Snare</div>
+              <div>Hi-Hat</div>
+              <div>Bass</div>
+              <div>Melody</div>
+
+            </div>
+
+            <div class="grid">
+
+              <div class="track">
+                <span></span><span></span><span class="active"></span>
+                <span></span><span></span><span class="active"></span>
+                <span></span><span></span><span></span><span class="active"></span>
+                <span></span><span></span>
+              </div>
+
+              <div class="track">
+                <span></span><span class="active"></span><span></span>
+                <span></span><span class="active"></span><span></span>
+                <span></span><span></span><span class="active"></span>
+                <span></span><span></span><span></span>
+              </div>
+
+              <div class="track">
+                <span class="active"></span><span></span><span class="active"></span>
+                <span></span><span class="active"></span><span></span>
+                <span class="active"></span><span></span><span class="active"></span>
+                <span></span><span class="active"></span><span></span>
+              </div>
+
+              <div class="track">
+                <span></span><span></span><span></span>
+                <span class="active"></span><span></span><span></span>
+                <span></span><span class="active"></span><span></span>
+                <span></span><span></span><span class="active"></span>
+              </div>
+
+              <div class="track">
+                <span class="active"></span><span></span><span></span>
+                <span class="active"></span><span></span><span class="active"></span>
+                <span></span><span></span><span class="active"></span>
+                <span></span><span class="active"></span><span></span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="mixer">
+
+            <div class="channel">
+              <div class="meter"><span></span></div>
+              <div class="knob"></div>
+              <small>KICK</small>
+            </div>
+
+            <div class="channel">
+              <div class="meter"><span></span></div>
+              <div class="knob"></div>
+              <small>SNARE</small>
+            </div>
+
+            <div class="channel">
+              <div class="meter"><span></span></div>
+              <div class="knob"></div>
+              <small>BASS</small>
+            </div>
+
+            <div class="channel">
+              <div class="meter"><span></span></div>
+              <div class="knob"></div>
+              <small>LEAD</small>
+            </div>
+
+            <div class="channel master">
+              <div class="meter"><span></span></div>
+              <div class="knob"></div>
+              <small>MASTER</small>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="features section" id="features">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span>POWERFUL TOOLS</span>
+          <h2>Everything you need to create.</h2>
+          <p>
+            Turn ideas into finished tracks with a complete production
+            workflow built around speed and creativity.
+          </p>
+        </div>
+
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">🎹</div>
+            <h3>Virtual Instruments</h3>
+            <p>
+              Create melodies and harmonies with powerful instruments
+              and expressive controls.
+            </p>
+          </article>
+
+
+          <article class="feature-card">
+            <div class="feature-icon">🎛️</div>
+            <h3>Pro Mixer</h3>
+            <p>
+              Shape your sound with flexible channels, effects,
+              routing and professional mixing tools.
+            </p>
+          </article>
+
+
+          <article class="feature-card">
+            <div class="feature-icon">🥁</div>
+            <h3>Beat Maker</h3>
+            <p>
+              Build drums and grooves quickly with an intuitive
+              step sequencer.
+            </p>
+          </article>
+
+
+          <article class="feature-card">
+            <div class="feature-icon">〰️</div>
+            <h3>Audio Editing</h3>
+            <p>
+              Cut, arrange and transform your recordings with
+              precision editing tools.
+            </p>
+          </article>
+
+
+          <article class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Effects</h3>
+            <p>
+              Add character with creative effects, dynamics,
+              filters and spatial processing.
+            </p>
+          </article>
+
+
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Fast Workflow</h3>
+            <p>
+              Spend less time navigating menus and more time
+              making music.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- WORKFLOW -->
+    <section class="workflow section" id="workflow">
+
+      <div class="container workflow-content">
+
+        <div class="workflow-image">
+
+          <div class="waveform">
+            <div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div>
+          </div>
+
+          <div class="wave-line"></div>
+
+          <span>TRACK 01 — VOCALS</span>
+
+        </div>
+
+
+        <div class="workflow-text">
+
+          <span class="small-title">YOUR CREATIVE WORKFLOW</span>
+
+          <h2>
+            From first beat
+            <span>to final master.</span>
+          </h2>
+
+          <p>
+            Start with an idea, build your arrangement, mix every
+            element and finish your track without leaving your
+            creative environment.
+          </p>
+
+          <ul>
+            <li>
+              <strong>01</strong>
+              Start with a beat
+            </li>
+
+            <li>
+              <strong>02</strong>
+              Build your arrangement
+            </li>
+
+            <li>
+              <strong>03</strong>
+              Mix and add effects
+            </li>
+
+            <li>
+              <strong>04</strong>
+              Export your final track
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATS -->
+    <section class="stats">
+
+      <div class="container stats-grid">
+
+        <div>
+          <strong>64+</strong>
+          <span>Audio tracks</span>
+        </div>
+
+        <div>
+          <strong>1000+</strong>
+          <span>Creative sounds</span>
+        </div>
+
+        <div>
+          <strong>32-bit</strong>
+          <span>Audio engine</span>
+        </div>
+
+        <div>
+          <strong>∞</strong>
+          <span>Your creativity</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRICING -->
+    <section class="pricing section" id="pricing">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span>SIMPLE PRICING</span>
+          <h2>Choose your studio.</h2>
+          <p>
+            Start creating today and upgrade when you're ready.
+          </p>
+        </div>
+
+
+        <div class="pricing-grid">
+
+          <article class="price-card">
+
+            <span class="plan">STARTER</span>
+
+            <h3>Free</h3>
+
+            <p>
+              Everything you need to start making music.
+            </p>
+
+            <div class="price">
+              $0
+              <small>/ forever</small>
+            </div>
+
+            <a href="#download" class="price-btn">
+              Get started
+            </a>
+
+            <ul>
+              <li>✓ Basic instruments</li>
+              <li>✓ 16 audio tracks</li>
+              <li>✓ Essential effects</li>
+              <li>✓ WAV export</li>
+            </ul>
+
+          </article>
+
+
+          <article class="price-card featured">
+
+            <div class="popular">
+              MOST POPULAR
+            </div>
+
+            <span class="plan">PRODUCER</span>
+
+            <h3>Pro</h3>
+
+            <p>
+              Full creative power for serious producers.
+            </p>
+
+            <div class="price">
+              $149
+              <small>/ one-time</small>
+            </div>
+
+            <a href="#download" class="price-btn">
+              Get Pro
+            </a>
+
+            <ul>
+              <li>✓ Unlimited projects</li>
+              <li>✓ 64+ audio tracks</li>
+              <li>✓ Full effects library</li>
+              <li>✓ Advanced mixer</li>
+              <li>✓ High-quality export</li>
+            </ul>
+
+          </article>
+
+
+          <article class="price-card">
+
+            <span class="plan">STUDIO</span>
+
+            <h3>Ultimate</h3>
+
+            <p>
+              Everything for professional studios.
+            </p>
+
+            <div class="price">
+              $249
+              <small>/ one-time</small>
+            </div>
+
+            <a href="#download" class="price-btn">
+              Get Ultimate
+            </a>
+
+            <ul>
+              <li>✓ Everything in Pro</li>
+              <li>✓ Premium instruments</li>
+              <li>✓ Advanced mastering</li>
+              <li>✓ Studio templates</li>
+            </ul>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DOWNLOAD -->
+    <section class="download" id="download">
+
+      <div class="container download-box">
+
+        <div>
+          <span class="small-title">READY TO CREATE?</span>
+
+          <h2>
+            Your next track
+            <span>starts here.</span>
+          </h2>
+
+          <p>
+            Download StudioMac and start creating music on your Mac.
+          </p>
+        </div>
+
+        <div class="download-actions">
+
+          <a href="#" class="primary-btn large" id="downloadBtn">
+             Download for Mac
+          </a>
+
+          <small>
+            macOS 12 or later
+          </small>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="container footer-content">
+
+      <div class="footer-brand">
+
+        <a href="#" class="logo">
+          <span class="logo-icon">S</span>
+          <span>Studio<span>Mac</span></span>
+        </a>
+
+        <p>
+          Music production without limits.
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <div>
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#download">Download</a>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Documentation</a>
+          <a href="#">Contact</a>
+        </div>
+
+        <div>
+          <h4>Social</h4>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+          <a href="#">Discord</a>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="container copyright">
+      © 2026 StudioMac. All rights reserved.
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
 </body>
 </html>
