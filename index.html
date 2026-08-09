@@ -1,1722 +1,1263 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta
-    name="description"
-    content="StudioMac is a modern music production platform for Mac creators."
-  >
-
-  <title>StudioMac — Make music. Make magic.</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-        "SF Pro Text", Inter, Arial, sans-serif;
-      background: #07070a;
-      color: #fff;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .container {
-      width: min(1180px, calc(100% - 40px));
-      margin: auto;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(7, 7, 10, .72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-
-    .nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
-
-    .logo-icon {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 11px;
-      background: linear-gradient(135deg, #ff375f, #8b5cf6);
-      box-shadow: 0 8px 30px rgba(139,92,246,.35);
-    }
-
-    .logo span span {
-      color: #a78bfa;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    nav a {
-      color: #a7a7b0;
-      font-size: 14px;
-      transition: .25s;
-    }
-
-    nav a:hover {
-      color: #fff;
-    }
-
-    .nav-button {
-      padding: 11px 18px;
-      border-radius: 10px;
-      background: #fff;
-      color: #09090b;
-      font-size: 14px;
-      font-weight: 700;
-      transition: .25s;
-    }
-
-    .nav-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(255,255,255,.15);
-    }
-
-    .menu-btn {
-      display: none;
-      border: 1px solid rgba(255,255,255,.15);
-      background: rgba(255,255,255,.06);
-      color: #fff;
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      position: relative;
-      min-height: 900px;
-      padding: 170px 0 100px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(139,92,246,.17), transparent 35%),
-        radial-gradient(circle at 80% 30%, rgba(255,55,95,.12), transparent 32%),
-        #07070a;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: linear-gradient(to bottom, black, transparent 90%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      align-items: center;
-      gap: 70px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 13px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 100px;
-      background: rgba(255,255,255,.04);
-      color: #bdbdc7;
-      font-size: 13px;
-      margin-bottom: 25px;
-    }
-
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #30d158;
-      box-shadow: 0 0 12px #30d158;
-    }
-
-    h1 {
-      font-size: clamp(54px, 7vw, 88px);
-      line-height: .98;
-      letter-spacing: -5px;
-      margin-bottom: 28px;
-    }
-
-    h1 span,
-    .workflow-text h2 span,
-    .download-box h2 span {
-      display: block;
-      background: linear-gradient(90deg, #fff, #a78bfa, #ff375f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-text > p {
-      max-width: 590px;
-      color: #a6a6af;
-      font-size: 18px;
-      line-height: 1.7;
-      margin-bottom: 32px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-    }
-
-    .primary-btn,
-    .secondary-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 15px 21px;
-      border-radius: 12px;
-      font-weight: 700;
-      transition: .25s;
-    }
-
-    .primary-btn {
-      background: linear-gradient(135deg, #fff, #d9d9df);
-      color: #08080a;
-    }
-
-    .primary-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(255,255,255,.15);
-    }
-
-    .secondary-btn {
-      border: 1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.04);
-      color: #fff;
-    }
-
-    .secondary-btn:hover {
-      background: rgba(255,255,255,.09);
-    }
-
-    .hero-info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      color: #777782;
-      font-size: 13px;
-      margin-top: 25px;
-    }
-
-    /* =========================
-       STUDIO MOCKUP
-    ========================= */
-
-    .studio-window {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      background: #101014;
-      border: 1px solid rgba(255,255,255,.1);
-      box-shadow:
-        0 40px 100px rgba(0,0,0,.6),
-        0 0 80px rgba(139,92,246,.12);
-      transform: perspective(1300px) rotateY(-5deg) rotateX(2deg);
-      transition: .5s;
-    }
-
-    .studio-window:hover {
-      transform: perspective(1300px) rotateY(0) rotateX(0);
-    }
-
-    .window-top {
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 18px;
-      background: #18181d;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      color: #888892;
-      font-size: 12px;
-    }
-
-    .window-buttons {
-      display: flex;
-      gap: 7px;
-    }
-
-    .window-buttons i {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: #ff5f57;
-    }
-
-    .window-buttons i:nth-child(2) {
-      background: #febc2e;
-    }
-
-    .window-buttons i:nth-child(3) {
-      background: #28c840;
-    }
-
-    .window-status {
-      color: #777;
-    }
-
-    .transport {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 15px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .transport button {
-      width: 38px;
-      height: 34px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: #1a1a20;
-      color: #fff;
-      border-radius: 7px;
-      cursor: pointer;
-    }
-
-    .transport .play-btn {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
-    }
-
-    .time,
-    .tempo {
-      font-size: 11px;
-      color: #777;
-      margin-left: 12px;
-    }
-
-    .tempo {
-      margin-left: auto;
-    }
-
-    .sequencer {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      min-height: 250px;
-    }
-
-    .track-labels {
-      border-right: 1px solid rgba(255,255,255,.06);
-    }
-
-    .track-labels div {
-      height: 50px;
-      display: flex;
-      align-items: center;
-      padding-left: 15px;
-      color: #7d7d87;
-      font-size: 11px;
-      border-bottom: 1px solid rgba(255,255,255,.045);
-    }
-
-    .grid {
-      background:
-        repeating-linear-gradient(
-          90deg,
-          transparent 0,
-          transparent 39px,
-          rgba(255,255,255,.045) 40px
-        );
-    }
-
-    .track {
-      height: 50px;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      align-items: center;
-      gap: 5px;
-      padding: 0 7px;
-      border-bottom: 1px solid rgba(255,255,255,.045);
-    }
-
-    .track span {
-      height: 29px;
-      border-radius: 4px;
-      background: #1b1b21;
-    }
-
-    .track span.active {
-      background: linear-gradient(180deg, #a78bfa, #7c3aed);
-      box-shadow: 0 0 12px rgba(139,92,246,.25);
-    }
-
-    .mixer {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      padding: 18px;
-      gap: 12px;
-      background: #0d0d10;
-    }
-
-    .channel {
-      text-align: center;
-    }
-
-    .meter {
-      height: 60px;
-      width: 7px;
-      margin: auto;
-      border-radius: 10px;
-      background: #1b1b20;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .meter span {
-      width: 100%;
-      height: 65%;
-      background: linear-gradient(#30d158, #ffd60a, #ff375f);
-    }
-
-    .knob {
-      width: 26px;
-      height: 26px;
-      margin: 12px auto;
-      border-radius: 50%;
-      background: conic-gradient(#a78bfa 0 230deg, #25252c 230deg);
-      position: relative;
-    }
-
-    .knob::after {
-      content: "";
-      position: absolute;
-      width: 4px;
-      height: 9px;
-      background: #fff;
-      top: 3px;
-      left: 11px;
-      border-radius: 5px;
-    }
-
-    .channel small {
-      color: #696974;
-      font-size: 8px;
-      letter-spacing: 1px;
-    }
-
-    /* =========================
-       SECTIONS
-    ========================= */
-
-    .section {
-      padding: 120px 0;
-    }
-
-    .section-heading {
-      max-width: 680px;
-      margin: 0 auto 65px;
-      text-align: center;
-    }
-
-    .section-heading > span,
-    .small-title {
-      color: #a78bfa;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(38px, 5vw, 58px);
-      line-height: 1.05;
-      letter-spacing: -2.5px;
-      margin: 15px 0;
-    }
-
-    .section-heading p {
-      color: #85858f;
-      font-size: 16px;
-    }
-
-    /* =========================
-       FEATURES
-    ========================= */
-
-    .features {
-      background: #0a0a0d;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .feature-card {
-      padding: 30px;
-      min-height: 230px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.07);
-      background: linear-gradient(145deg, #111116, #0c0c0f);
-      transition: .3s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-7px);
-      border-color: rgba(167,139,250,.3);
-      box-shadow: 0 20px 50px rgba(0,0,0,.3);
-    }
-
-    .feature-icon {
-      font-size: 28px;
-      margin-bottom: 25px;
-    }
-
-    .feature-card h3 {
-      font-size: 19px;
-      margin-bottom: 9px;
-    }
-
-    .feature-card p {
-      color: #7e7e88;
-      font-size: 14px;
-    }
-
-    /* =========================
-       WORKFLOW
-    ========================= */
-
-    .workflow {
-      background: #07070a;
-    }
-
-    .workflow-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .workflow-image {
-      min-height: 390px;
-      border-radius: 25px;
-      border: 1px solid rgba(255,255,255,.08);
-      background:
-        radial-gradient(circle at 50% 50%, rgba(139,92,246,.22), transparent 50%),
-        #101014;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 35px;
-    }
-
-    .waveform {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .waveform div {
-      width: 8px;
-      border-radius: 10px;
-      background: linear-gradient(#a78bfa, #7c3aed);
-      animation: wave 1.4s ease-in-out infinite alternate;
-    }
-
-    .waveform div:nth-child(2n) {
-      animation-delay: .2s;
-    }
-
-    .waveform div:nth-child(3n) {
-      animation-delay: .4s;
-    }
-
-    .waveform div:nth-child(4n) {
-      animation-delay: .6s;
-    }
-
-    @keyframes wave {
-      from { height: 20px; opacity: .5; }
-      to { height: 120px; opacity: 1; }
-    }
-
-    .wave-line {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #a78bfa, transparent);
-      margin-bottom: 20px;
-    }
-
-    .workflow-image > span {
-      color: #777782;
-      font-size: 10px;
-      letter-spacing: 2px;
-    }
-
-    .workflow-text h2 {
-      font-size: clamp(40px, 5vw, 60px);
-      line-height: 1;
-      letter-spacing: -3px;
-      margin: 18px 0 25px;
-    }
-
-    .workflow-text > p {
-      color: #85858f;
-      max-width: 530px;
-      margin-bottom: 30px;
-    }
-
-    .workflow-text ul {
-      list-style: none;
-    }
-
-    .workflow-text li {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      color: #b5b5be;
-    }
-
-    .workflow-text li strong {
-      color: #a78bfa;
-      font-size: 12px;
-    }
-
-    /* =========================
-       STATS
-    ========================= */
-
-    .stats {
-      padding: 65px 0;
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      background: #0a0a0d;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      text-align: center;
-    }
-
-    .stats strong {
-      display: block;
-      font-size: 36px;
-      letter-spacing: -2px;
-    }
-
-    .stats span {
-      color: #72727c;
-      font-size: 12px;
-    }
-
-    /* =========================
-       PRICING
-    ========================= */
-
-    .pricing {
-      background: #07070a;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .price-card {
-      position: relative;
-      padding: 35px;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 20px;
-      background: #101014;
-    }
-
-    .price-card.featured {
-      border-color: rgba(139,92,246,.55);
-      box-shadow: 0 0 60px rgba(139,92,246,.09);
-    }
-
-    .popular {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      padding: 5px 9px;
-      border-radius: 50px;
-      background: #8b5cf6;
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .plan {
-      color: #a78bfa;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .price-card h3 {
-      font-size: 30px;
-      margin: 10px 0;
-    }
-
-    .price-card > p {
-      color: #7d7d87;
-      font-size: 13px;
-      min-height: 48px;
-    }
-
-    .price {
-      font-size: 43px;
-      font-weight: 800;
-      letter-spacing: -2px;
-      margin: 25px 0;
-    }
-
-    .price small {
-      color: #666670;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0;
-    }
-
-    .price-btn {
-      display: flex;
-      justify-content: center;
-      padding: 13px;
-      border-radius: 10px;
-      background: #fff;
-      color: #09090b;
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 25px;
-      transition: .25s;
-    }
-
-    .price-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .price-card ul {
-      list-style: none;
-      color: #92929c;
-      font-size: 13px;
-    }
-
-    .price-card li {
-      padding: 7px 0;
-    }
-
-    /* =========================
-       DOWNLOAD
-    ========================= */
-
-    .download {
-      padding: 100px 0;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(139,92,246,.18), transparent 50%),
-        #0a0a0d;
-    }
-
-    .download-box {
-      min-height: 300px;
-      padding: 60px;
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 25px;
-      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .download-box h2 {
-      font-size: clamp(40px, 5vw, 62px);
-      line-height: 1;
-      letter-spacing: -3px;
-      margin: 15px 0;
-    }
-
-    .download-box p {
-      color: #85858f;
-    }
-
-    .download-actions {
-      min-width: 220px;
-      text-align: center;
-    }
-
-    .primary-btn.large {
-      width: 100%;
-      padding: 17px 25px;
-    }
-
-    .download-actions small {
-      display: block;
-      color: #666670;
-      margin-top: 12px;
-      font-size: 10px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      background: #050507;
-      padding: 70px 0 25px;
-      border-top: 1px solid rgba(255,255,255,.06);
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 70px;
-      padding-bottom: 60px;
-    }
-
-    .footer-brand p {
-      color: #666670;
-      font-size: 13px;
-      margin-top: 15px;
-    }
-
-    .footer-links {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-    }
-
-    .footer-links h4 {
-      font-size: 12px;
-      margin-bottom: 15px;
-      color: #fff;
-    }
-
-    .footer-links a {
-      display: block;
-      color: #666670;
-      font-size: 12px;
-      margin: 8px 0;
-      transition: .2s;
-    }
-
-    .footer-links a:hover {
-      color: #fff;
-    }
-
-    .copyright {
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,.06);
-      color: #4f4f58;
-      font-size: 11px;
-    }
-
-    /* =========================
-       ANIMATION
-    ========================= */
-
-    .feature-card,
-    .price-card,
-    .workflow-image {
-      animation: fadeUp .8s ease both;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 950px) {
-
-      nav {
-        position: absolute;
-        top: 76px;
-        left: 20px;
-        right: 20px;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 20px;
-        border-radius: 15px;
-        background: rgba(18,18,23,.97);
-        border: 1px solid rgba(255,255,255,.08);
-      }
-
-      nav.open {
-        display: flex;
-      }
-
-      nav a {
-        padding: 8px;
-      }
-
-      .nav-button {
-        display: none;
-      }
-
-      .menu-btn {
-        display: block;
-      }
-
-      .hero-content {
-        grid-template-columns: 1fr;
-      }
-
-      .studio-window {
-        transform: none;
-      }
-
-      .feature-grid,
-      .pricing-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .workflow-content {
-        grid-template-columns: 1fr;
-      }
-
-      .download-box {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 650px) {
-
-      .container {
-        width: min(100% - 28px, 1180px);
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 135px;
-      }
-
-      h1 {
-        font-size: 53px;
-        letter-spacing: -3px;
-      }
-
-      .hero-text > p {
-        font-size: 16px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-      }
-
-      .hero-buttons a {
-        width: 100%;
-      }
-
-      .studio-window {
-        border-radius: 15px;
-      }
-
-      .sequencer {
-        grid-template-columns: 65px 1fr;
-      }
-
-      .track {
-        gap: 3px;
-      }
-
-      .feature-grid,
-      .pricing-grid,
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats-grid {
-        gap: 30px;
-      }
-
-      .section {
-        padding: 85px 0;
-      }
-
-      .workflow-text h2 {
-        font-size: 45px;
-      }
-
-      .download-box {
-        padding: 35px 25px;
-      }
-
-      .download-box h2 {
-        font-size: 43px;
-      }
-
-      .download-actions {
-        width: 100%;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .footer-links {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .footer-links div:last-child {
-        grid-column: 1 / -1;
-      }
-    }
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+<style>
+    * {<br />
+      margin: 0;<br />
+      padding: 0;<br />
+      box-sizing: border-box;<br />
+    }</p>
+<p>    html {<br />
+      scroll-behavior: smooth;<br />
+    }</p>
+<p>    body {<br />
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",<br />
+        "SF Pro Text", Inter, Arial, sans-serif;<br />
+      background: #07070a;<br />
+      color: #fff;<br />
+      line-height: 1.6;<br />
+      overflow-x: hidden;<br />
+    }</p>
+<p>    a {<br />
+      color: inherit;<br />
+      text-decoration: none;<br />
+    }</p>
+<p>    button {<br />
+      font: inherit;<br />
+    }</p>
+<p>    .container {<br />
+      width: min(1180px, calc(100% - 40px));<br />
+      margin: auto;<br />
+    }</p>
+<p>    /* =========================<br />
+       HEADER<br />
+    ========================= */</p>
+<p>    header {<br />
+      position: fixed;<br />
+      top: 0;<br />
+      left: 0;<br />
+      width: 100%;<br />
+      z-index: 1000;<br />
+      background: rgba(7, 7, 10, .72);<br />
+      backdrop-filter: blur(20px);<br />
+      -webkit-backdrop-filter: blur(20px);<br />
+      border-bottom: 1px solid rgba(255,255,255,.07);<br />
+    }</p>
+<p>    .nav {<br />
+      min-height: 76px;<br />
+      display: flex;<br />
+      align-items: center;<br />
+      justify-content: space-between;<br />
+      gap: 25px;<br />
+    }</p>
+<p>    .logo {<br />
+      display: inline-flex;<br />
+      align-items: center;<br />
+      gap: 10px;<br />
+      font-size: 20px;<br />
+      font-weight: 800;<br />
+      letter-spacing: -.5px;<br />
+    }</p>
+<p>    .logo-icon {<br />
+      width: 38px;<br />
+      height: 38px;<br />
+      display: grid;<br />
+      place-items: center;<br />
+      border-radius: 11px;<br />
+      background: linear-gradient(135deg, #ff375f, #8b5cf6);<br />
+      box-shadow: 0 8px 30px rgba(139,92,246,.35);<br />
+    }</p>
+<p>    .logo span span {<br />
+      color: #a78bfa;<br />
+    }</p>
+<p>    nav {<br />
+      display: flex;<br />
+      align-items: center;<br />
+      gap: 30px;<br />
+    }</p>
+<p>    nav a {<br />
+      color: #a7a7b0;<br />
+      font-size: 14px;<br />
+      transition: .25s;<br />
+    }</p>
+<p>    nav a:hover {<br />
+      color: #fff;<br />
+    }</p>
+<p>    .nav-button {<br />
+      padding: 11px 18px;<br />
+      border-radius: 10px;<br />
+      background: #fff;<br />
+      color: #09090b;<br />
+      font-size: 14px;<br />
+      font-weight: 700;<br />
+      transition: .25s;<br />
+    }</p>
+<p>    .nav-button:hover {<br />
+      transform: translateY(-2px);<br />
+      box-shadow: 0 10px 30px rgba(255,255,255,.15);<br />
+    }</p>
+<p>    .menu-btn {<br />
+      display: none;<br />
+      border: 1px solid rgba(255,255,255,.15);<br />
+      background: rgba(255,255,255,.06);<br />
+      color: #fff;<br />
+      width: 42px;<br />
+      height: 42px;<br />
+      border-radius: 10px;<br />
+      cursor: pointer;<br />
+    }</p>
+<p>    /* =========================<br />
+       HERO<br />
+    ========================= */</p>
+<p>    .hero {<br />
+      position: relative;<br />
+      min-height: 900px;<br />
+      padding: 170px 0 100px;<br />
+      overflow: hidden;<br />
+      background:<br />
+        radial-gradient(circle at 20% 20%, rgba(139,92,246,.17), transparent 35%),<br />
+        radial-gradient(circle at 80% 30%, rgba(255,55,95,.12), transparent 32%),<br />
+        #07070a;<br />
+    }</p>
+<p>    .hero-bg {<br />
+      position: absolute;<br />
+      inset: 0;<br />
+      pointer-events: none;<br />
+      background-image:<br />
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),<br />
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);<br />
+      background-size: 60px 60px;<br />
+      mask-image: linear-gradient(to bottom, black, transparent 90%);<br />
+    }</p>
+<p>    .hero-content {<br />
+      position: relative;<br />
+      z-index: 2;<br />
+      display: grid;<br />
+      grid-template-columns: .9fr 1.1fr;<br />
+      align-items: center;<br />
+      gap: 70px;<br />
+    }</p>
+<p>    .badge {<br />
+      display: inline-flex;<br />
+      align-items: center;<br />
+      gap: 9px;<br />
+      padding: 8px 13px;<br />
+      border: 1px solid rgba(255,255,255,.1);<br />
+      border-radius: 100px;<br />
+      background: rgba(255,255,255,.04);<br />
+      color: #bdbdc7;<br />
+      font-size: 13px;<br />
+      margin-bottom: 25px;<br />
+    }</p>
+<p>    .dot {<br />
+      width: 7px;<br />
+      height: 7px;<br />
+      border-radius: 50%;<br />
+      background: #30d158;<br />
+      box-shadow: 0 0 12px #30d158;<br />
+    }</p>
+<p>    h1 {<br />
+      font-size: clamp(54px, 7vw, 88px);<br />
+      line-height: .98;<br />
+      letter-spacing: -5px;<br />
+      margin-bottom: 28px;<br />
+    }</p>
+<p>    h1 span,<br />
+    .workflow-text h2 span,<br />
+    .download-box h2 span {<br />
+      display: block;<br />
+      background: linear-gradient(90deg, #fff, #a78bfa, #ff375f);<br />
+      -webkit-background-clip: text;<br />
+      background-clip: text;<br />
+      color: transparent;<br />
+    }</p>
+<p>    .hero-text > p {<br />
+      max-width: 590px;<br />
+      color: #a6a6af;<br />
+      font-size: 18px;<br />
+      line-height: 1.7;<br />
+      margin-bottom: 32px;<br />
+    }</p>
+<p>    .hero-buttons {<br />
+      display: flex;<br />
+      flex-wrap: wrap;<br />
+      gap: 13px;<br />
+    }</p>
+<p>    .primary-btn,<br />
+    .secondary-btn {<br />
+      display: inline-flex;<br />
+      align-items: center;<br />
+      justify-content: center;<br />
+      gap: 10px;<br />
+      padding: 15px 21px;<br />
+      border-radius: 12px;<br />
+      font-weight: 700;<br />
+      transition: .25s;<br />
+    }</p>
+<p>    .primary-btn {<br />
+      background: linear-gradient(135deg, #fff, #d9d9df);<br />
+      color: #08080a;<br />
+    }</p>
+<p>    .primary-btn:hover {<br />
+      transform: translateY(-3px);<br />
+      box-shadow: 0 15px 40px rgba(255,255,255,.15);<br />
+    }</p>
+<p>    .secondary-btn {<br />
+      border: 1px solid rgba(255,255,255,.13);<br />
+      background: rgba(255,255,255,.04);<br />
+      color: #fff;<br />
+    }</p>
+<p>    .secondary-btn:hover {<br />
+      background: rgba(255,255,255,.09);<br />
+    }</p>
+<p>    .hero-info {<br />
+      display: flex;<br />
+      flex-wrap: wrap;<br />
+      gap: 20px;<br />
+      color: #777782;<br />
+      font-size: 13px;<br />
+      margin-top: 25px;<br />
+    }</p>
+<p>    /* =========================<br />
+       STUDIO MOCKUP<br />
+    ========================= */</p>
+<p>    .studio-window {<br />
+      position: relative;<br />
+      border-radius: 20px;<br />
+      overflow: hidden;<br />
+      background: #101014;<br />
+      border: 1px solid rgba(255,255,255,.1);<br />
+      box-shadow:<br />
+        0 40px 100px rgba(0,0,0,.6),<br />
+        0 0 80px rgba(139,92,246,.12);<br />
+      transform: perspective(1300px) rotateY(-5deg) rotateX(2deg);<br />
+      transition: .5s;<br />
+    }</p>
+<p>    .studio-window:hover {<br />
+      transform: perspective(1300px) rotateY(0) rotateX(0);<br />
+    }</p>
+<p>    .window-top {<br />
+      height: 52px;<br />
+      display: flex;<br />
+      align-items: center;<br />
+      justify-content: space-between;<br />
+      padding: 0 18px;<br />
+      background: #18181d;<br />
+      border-bottom: 1px solid rgba(255,255,255,.07);<br />
+      color: #888892;<br />
+      font-size: 12px;<br />
+    }</p>
+<p>    .window-buttons {<br />
+      display: flex;<br />
+      gap: 7px;<br />
+    }</p>
+<p>    .window-buttons i {<br />
+      width: 11px;<br />
+      height: 11px;<br />
+      border-radius: 50%;<br />
+      background: #ff5f57;<br />
+    }</p>
+<p>    .window-buttons i:nth-child(2) {<br />
+      background: #febc2e;<br />
+    }</p>
+<p>    .window-buttons i:nth-child(3) {<br />
+      background: #28c840;<br />
+    }</p>
+<p>    .window-status {<br />
+      color: #777;<br />
+    }</p>
+<p>    .transport {<br />
+      display: flex;<br />
+      align-items: center;<br />
+      gap: 8px;<br />
+      padding: 15px;<br />
+      border-bottom: 1px solid rgba(255,255,255,.06);<br />
+    }</p>
+<p>    .transport button {<br />
+      width: 38px;<br />
+      height: 34px;<br />
+      border: 1px solid rgba(255,255,255,.1);<br />
+      background: #1a1a20;<br />
+      color: #fff;<br />
+      border-radius: 7px;<br />
+      cursor: pointer;<br />
+    }</p>
+<p>    .transport .play-btn {<br />
+      background: #8b5cf6;<br />
+      border-color: #8b5cf6;<br />
+    }</p>
+<p>    .time,<br />
+    .tempo {<br />
+      font-size: 11px;<br />
+      color: #777;<br />
+      margin-left: 12px;<br />
+    }</p>
+<p>    .tempo {<br />
+      margin-left: auto;<br />
+    }</p>
+<p>    .sequencer {<br />
+      display: grid;<br />
+      grid-template-columns: 90px 1fr;<br />
+      min-height: 250px;<br />
+    }</p>
+<p>    .track-labels {<br />
+      border-right: 1px solid rgba(255,255,255,.06);<br />
+    }</p>
+<p>    .track-labels div {<br />
+      height: 50px;<br />
+      display: flex;<br />
+      align-items: center;<br />
+      padding-left: 15px;<br />
+      color: #7d7d87;<br />
+      font-size: 11px;<br />
+      border-bottom: 1px solid rgba(255,255,255,.045);<br />
+    }</p>
+<p>    .grid {<br />
+      background:<br />
+        repeating-linear-gradient(<br />
+          90deg,<br />
+          transparent 0,<br />
+          transparent 39px,<br />
+          rgba(255,255,255,.045) 40px<br />
+        );<br />
+    }</p>
+<p>    .track {<br />
+      height: 50px;<br />
+      display: grid;<br />
+      grid-template-columns: repeat(12, 1fr);<br />
+      align-items: center;<br />
+      gap: 5px;<br />
+      padding: 0 7px;<br />
+      border-bottom: 1px solid rgba(255,255,255,.045);<br />
+    }</p>
+<p>    .track span {<br />
+      height: 29px;<br />
+      border-radius: 4px;<br />
+      background: #1b1b21;<br />
+    }</p>
+<p>    .track span.active {<br />
+      background: linear-gradient(180deg, #a78bfa, #7c3aed);<br />
+      box-shadow: 0 0 12px rgba(139,92,246,.25);<br />
+    }</p>
+<p>    .mixer {<br />
+      display: grid;<br />
+      grid-template-columns: repeat(5, 1fr);<br />
+      padding: 18px;<br />
+      gap: 12px;<br />
+      background: #0d0d10;<br />
+    }</p>
+<p>    .channel {<br />
+      text-align: center;<br />
+    }</p>
+<p>    .meter {<br />
+      height: 60px;<br />
+      width: 7px;<br />
+      margin: auto;<br />
+      border-radius: 10px;<br />
+      background: #1b1b20;<br />
+      overflow: hidden;<br />
+      display: flex;<br />
+      align-items: flex-end;<br />
+    }</p>
+<p>    .meter span {<br />
+      width: 100%;<br />
+      height: 65%;<br />
+      background: linear-gradient(#30d158, #ffd60a, #ff375f);<br />
+    }</p>
+<p>    .knob {<br />
+      width: 26px;<br />
+      height: 26px;<br />
+      margin: 12px auto;<br />
+      border-radius: 50%;<br />
+      background: conic-gradient(#a78bfa 0 230deg, #25252c 230deg);<br />
+      position: relative;<br />
+    }</p>
+<p>    .knob::after {<br />
+      content: "";<br />
+      position: absolute;<br />
+      width: 4px;<br />
+      height: 9px;<br />
+      background: #fff;<br />
+      top: 3px;<br />
+      left: 11px;<br />
+      border-radius: 5px;<br />
+    }</p>
+<p>    .channel small {<br />
+      color: #696974;<br />
+      font-size: 8px;<br />
+      letter-spacing: 1px;<br />
+    }</p>
+<p>    /* =========================<br />
+       SECTIONS<br />
+    ========================= */</p>
+<p>    .section {<br />
+      padding: 120px 0;<br />
+    }</p>
+<p>    .section-heading {<br />
+      max-width: 680px;<br />
+      margin: 0 auto 65px;<br />
+      text-align: center;<br />
+    }</p>
+<p>    .section-heading > span,<br />
+    .small-title {<br />
+      color: #a78bfa;<br />
+      font-size: 11px;<br />
+      font-weight: 800;<br />
+      letter-spacing: 2px;<br />
+    }</p>
+<p>    .section-heading h2 {<br />
+      font-size: clamp(38px, 5vw, 58px);<br />
+      line-height: 1.05;<br />
+      letter-spacing: -2.5px;<br />
+      margin: 15px 0;<br />
+    }</p>
+<p>    .section-heading p {<br />
+      color: #85858f;<br />
+      font-size: 16px;<br />
+    }</p>
+<p>    /* =========================<br />
+       FEATURES<br />
+    ========================= */</p>
+<p>    .features {<br />
+      background: #0a0a0d;<br />
+    }</p>
+<p>    .feature-grid {<br />
+      display: grid;<br />
+      grid-template-columns: repeat(3, 1fr);<br />
+      gap: 16px;<br />
+    }</p>
+<p>    .feature-card {<br />
+      padding: 30px;<br />
+      min-height: 230px;<br />
+      border-radius: 18px;<br />
+      border: 1px solid rgba(255,255,255,.07);<br />
+      background: linear-gradient(145deg, #111116, #0c0c0f);<br />
+      transition: .3s;<br />
+    }</p>
+<p>    .feature-card:hover {<br />
+      transform: translateY(-7px);<br />
+      border-color: rgba(167,139,250,.3);<br />
+      box-shadow: 0 20px 50px rgba(0,0,0,.3);<br />
+    }</p>
+<p>    .feature-icon {<br />
+      font-size: 28px;<br />
+      margin-bottom: 25px;<br />
+    }</p>
+<p>    .feature-card h3 {<br />
+      font-size: 19px;<br />
+      margin-bottom: 9px;<br />
+    }</p>
+<p>    .feature-card p {<br />
+      color: #7e7e88;<br />
+      font-size: 14px;<br />
+    }</p>
+<p>    /* =========================<br />
+       WORKFLOW<br />
+    ========================= */</p>
+<p>    .workflow {<br />
+      background: #07070a;<br />
+    }</p>
+<p>    .workflow-content {<br />
+      display: grid;<br />
+      grid-template-columns: 1fr 1fr;<br />
+      gap: 80px;<br />
+      align-items: center;<br />
+    }</p>
+<p>    .workflow-image {<br />
+      min-height: 390px;<br />
+      border-radius: 25px;<br />
+      border: 1px solid rgba(255,255,255,.08);<br />
+      background:<br />
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,.22), transparent 50%),<br />
+        #101014;<br />
+      position: relative;<br />
+      overflow: hidden;<br />
+      display: flex;<br />
+      flex-direction: column;<br />
+      justify-content: center;<br />
+      padding: 35px;<br />
+    }</p>
+<p>    .waveform {<br />
+      height: 160px;<br />
+      display: flex;<br />
+      align-items: center;<br />
+      gap: 6px;<br />
+    }</p>
+<p>    .waveform div {<br />
+      width: 8px;<br />
+      border-radius: 10px;<br />
+      background: linear-gradient(#a78bfa, #7c3aed);<br />
+      animation: wave 1.4s ease-in-out infinite alternate;<br />
+    }</p>
+<p>    .waveform div:nth-child(2n) {<br />
+      animation-delay: .2s;<br />
+    }</p>
+<p>    .waveform div:nth-child(3n) {<br />
+      animation-delay: .4s;<br />
+    }</p>
+<p>    .waveform div:nth-child(4n) {<br />
+      animation-delay: .6s;<br />
+    }</p>
+<p>    @keyframes wave {<br />
+      from { height: 20px; opacity: .5; }<br />
+      to { height: 120px; opacity: 1; }<br />
+    }</p>
+<p>    .wave-line {<br />
+      height: 1px;<br />
+      background: linear-gradient(90deg, transparent, #a78bfa, transparent);<br />
+      margin-bottom: 20px;<br />
+    }</p>
+<p>    .workflow-image > span {<br />
+      color: #777782;<br />
+      font-size: 10px;<br />
+      letter-spacing: 2px;<br />
+    }</p>
+<p>    .workflow-text h2 {<br />
+      font-size: clamp(40px, 5vw, 60px);<br />
+      line-height: 1;<br />
+      letter-spacing: -3px;<br />
+      margin: 18px 0 25px;<br />
+    }</p>
+<p>    .workflow-text > p {<br />
+      color: #85858f;<br />
+      max-width: 530px;<br />
+      margin-bottom: 30px;<br />
+    }</p>
+<p>    .workflow-text ul {<br />
+      list-style: none;<br />
+    }</p>
+<p>    .workflow-text li {<br />
+      display: flex;<br />
+      align-items: center;<br />
+      gap: 15px;<br />
+      padding: 13px 0;<br />
+      border-bottom: 1px solid rgba(255,255,255,.07);<br />
+      color: #b5b5be;<br />
+    }</p>
+<p>    .workflow-text li strong {<br />
+      color: #a78bfa;<br />
+      font-size: 12px;<br />
+    }</p>
+<p>    /* =========================<br />
+       STATS<br />
+    ========================= */</p>
+<p>    .stats {<br />
+      padding: 65px 0;<br />
+      border-top: 1px solid rgba(255,255,255,.06);<br />
+      border-bottom: 1px solid rgba(255,255,255,.06);<br />
+      background: #0a0a0d;<br />
+    }</p>
+<p>    .stats-grid {<br />
+      display: grid;<br />
+      grid-template-columns: repeat(4, 1fr);<br />
+      text-align: center;<br />
+    }</p>
+<p>    .stats strong {<br />
+      display: block;<br />
+      font-size: 36px;<br />
+      letter-spacing: -2px;<br />
+    }</p>
+<p>    .stats span {<br />
+      color: #72727c;<br />
+      font-size: 12px;<br />
+    }</p>
+<p>    /* =========================<br />
+       PRICING<br />
+    ========================= */</p>
+<p>    .pricing {<br />
+      background: #07070a;<br />
+    }</p>
+<p>    .pricing-grid {<br />
+      display: grid;<br />
+      grid-template-columns: repeat(3, 1fr);<br />
+      gap: 18px;<br />
+      align-items: stretch;<br />
+    }</p>
+<p>    .price-card {<br />
+      position: relative;<br />
+      padding: 35px;<br />
+      border: 1px solid rgba(255,255,255,.08);<br />
+      border-radius: 20px;<br />
+      background: #101014;<br />
+    }</p>
+<p>    .price-card.featured {<br />
+      border-color: rgba(139,92,246,.55);<br />
+      box-shadow: 0 0 60px rgba(139,92,246,.09);<br />
+    }</p>
+<p>    .popular {<br />
+      position: absolute;<br />
+      top: 18px;<br />
+      right: 18px;<br />
+      padding: 5px 9px;<br />
+      border-radius: 50px;<br />
+      background: #8b5cf6;<br />
+      font-size: 8px;<br />
+      font-weight: 800;<br />
+      letter-spacing: 1px;<br />
+    }</p>
+<p>    .plan {<br />
+      color: #a78bfa;<br />
+      font-size: 10px;<br />
+      font-weight: 800;<br />
+      letter-spacing: 2px;<br />
+    }</p>
+<p>    .price-card h3 {<br />
+      font-size: 30px;<br />
+      margin: 10px 0;<br />
+    }</p>
+<p>    .price-card > p {<br />
+      color: #7d7d87;<br />
+      font-size: 13px;<br />
+      min-height: 48px;<br />
+    }</p>
+<p>    .price {<br />
+      font-size: 43px;<br />
+      font-weight: 800;<br />
+      letter-spacing: -2px;<br />
+      margin: 25px 0;<br />
+    }</p>
+<p>    .price small {<br />
+      color: #666670;<br />
+      font-size: 11px;<br />
+      font-weight: 400;<br />
+      letter-spacing: 0;<br />
+    }</p>
+<p>    .price-btn {<br />
+      display: flex;<br />
+      justify-content: center;<br />
+      padding: 13px;<br />
+      border-radius: 10px;<br />
+      background: #fff;<br />
+      color: #09090b;<br />
+      font-size: 13px;<br />
+      font-weight: 800;<br />
+      margin-bottom: 25px;<br />
+      transition: .25s;<br />
+    }</p>
+<p>    .price-btn:hover {<br />
+      transform: translateY(-2px);<br />
+    }</p>
+<p>    .price-card ul {<br />
+      list-style: none;<br />
+      color: #92929c;<br />
+      font-size: 13px;<br />
+    }</p>
+<p>    .price-card li {<br />
+      padding: 7px 0;<br />
+    }</p>
+<p>    /* =========================<br />
+       DOWNLOAD<br />
+    ========================= */</p>
+<p>    .download {<br />
+      padding: 100px 0;<br />
+      background:<br />
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,.18), transparent 50%),<br />
+        #0a0a0d;<br />
+    }</p>
+<p>    .download-box {<br />
+      min-height: 300px;<br />
+      padding: 60px;<br />
+      border: 1px solid rgba(255,255,255,.09);<br />
+      border-radius: 25px;<br />
+      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.015));<br />
+      display: flex;<br />
+      justify-content: space-between;<br />
+      align-items: center;<br />
+      gap: 40px;<br />
+    }</p>
+<p>    .download-box h2 {<br />
+      font-size: clamp(40px, 5vw, 62px);<br />
+      line-height: 1;<br />
+      letter-spacing: -3px;<br />
+      margin: 15px 0;<br />
+    }</p>
+<p>    .download-box p {<br />
+      color: #85858f;<br />
+    }</p>
+<p>    .download-actions {<br />
+      min-width: 220px;<br />
+      text-align: center;<br />
+    }</p>
+<p>    .primary-btn.large {<br />
+      width: 100%;<br />
+      padding: 17px 25px;<br />
+    }</p>
+<p>    .download-actions small {<br />
+      display: block;<br />
+      color: #666670;<br />
+      margin-top: 12px;<br />
+      font-size: 10px;<br />
+    }</p>
+<p>    /* =========================<br />
+       FOOTER<br />
+    ========================= */</p>
+<p>    footer {<br />
+      background: #050507;<br />
+      padding: 70px 0 25px;<br />
+      border-top: 1px solid rgba(255,255,255,.06);<br />
+    }</p>
+<p>    .footer-content {<br />
+      display: grid;<br />
+      grid-template-columns: 1fr 1.5fr;<br />
+      gap: 70px;<br />
+      padding-bottom: 60px;<br />
+    }</p>
+<p>    .footer-brand p {<br />
+      color: #666670;<br />
+      font-size: 13px;<br />
+      margin-top: 15px;<br />
+    }</p>
+<p>    .footer-links {<br />
+      display: grid;<br />
+      grid-template-columns: repeat(3, 1fr);<br />
+      gap: 30px;<br />
+    }</p>
+<p>    .footer-links h4 {<br />
+      font-size: 12px;<br />
+      margin-bottom: 15px;<br />
+      color: #fff;<br />
+    }</p>
+<p>    .footer-links a {<br />
+      display: block;<br />
+      color: #666670;<br />
+      font-size: 12px;<br />
+      margin: 8px 0;<br />
+      transition: .2s;<br />
+    }</p>
+<p>    .footer-links a:hover {<br />
+      color: #fff;<br />
+    }</p>
+<p>    .copyright {<br />
+      padding-top: 20px;<br />
+      border-top: 1px solid rgba(255,255,255,.06);<br />
+      color: #4f4f58;<br />
+      font-size: 11px;<br />
+    }</p>
+<p>    /* =========================<br />
+       ANIMATION<br />
+    ========================= */</p>
+<p>    .feature-card,<br />
+    .price-card,<br />
+    .workflow-image {<br />
+      animation: fadeUp .8s ease both;<br />
+    }</p>
+<p>    @keyframes fadeUp {<br />
+      from {<br />
+        opacity: 0;<br />
+        transform: translateY(25px);<br />
+      }<br />
+      to {<br />
+        opacity: 1;<br />
+        transform: translateY(0);<br />
+      }<br />
+    }</p>
+<p>    /* =========================<br />
+       RESPONSIVE<br />
+    ========================= */</p>
+<p>    @media (max-width: 950px) {</p>
+<p>      nav {<br />
+        position: absolute;<br />
+        top: 76px;<br />
+        left: 20px;<br />
+        right: 20px;<br />
+        display: none;<br />
+        flex-direction: column;<br />
+        align-items: stretch;<br />
+        padding: 20px;<br />
+        border-radius: 15px;<br />
+        background: rgba(18,18,23,.97);<br />
+        border: 1px solid rgba(255,255,255,.08);<br />
+      }</p>
+<p>      nav.open {<br />
+        display: flex;<br />
+      }</p>
+<p>      nav a {<br />
+        padding: 8px;<br />
+      }</p>
+<p>      .nav-button {<br />
+        display: none;<br />
+      }</p>
+<p>      .menu-btn {<br />
+        display: block;<br />
+      }</p>
+<p>      .hero-content {<br />
+        grid-template-columns: 1fr;<br />
+      }</p>
+<p>      .studio-window {<br />
+        transform: none;<br />
+      }</p>
+<p>      .feature-grid,<br />
+      .pricing-grid {<br />
+        grid-template-columns: repeat(2, 1fr);<br />
+      }</p>
+<p>      .workflow-content {<br />
+        grid-template-columns: 1fr;<br />
+      }</p>
+<p>      .download-box {<br />
+        flex-direction: column;<br />
+        align-items: flex-start;<br />
+      }<br />
+    }</p>
+<p>    @media (max-width: 650px) {</p>
+<p>      .container {<br />
+        width: min(100% - 28px, 1180px);<br />
+      }</p>
+<p>      .hero {<br />
+        min-height: auto;<br />
+        padding-top: 135px;<br />
+      }</p>
+<p>      h1 {<br />
+        font-size: 53px;<br />
+        letter-spacing: -3px;<br />
+      }</p>
+<p>      .hero-text > p {<br />
+        font-size: 16px;<br />
+      }</p>
+<p>      .hero-buttons {<br />
+        flex-direction: column;<br />
+      }</p>
+<p>      .hero-buttons a {<br />
+        width: 100%;<br />
+      }</p>
+<p>      .studio-window {<br />
+        border-radius: 15px;<br />
+      }</p>
+<p>      .sequencer {<br />
+        grid-template-columns: 65px 1fr;<br />
+      }</p>
+<p>      .track {<br />
+        gap: 3px;<br />
+      }</p>
+<p>      .feature-grid,<br />
+      .pricing-grid,<br />
+      .stats-grid {<br />
+        grid-template-columns: 1fr;<br />
+      }</p>
+<p>      .stats-grid {<br />
+        gap: 30px;<br />
+      }</p>
+<p>      .section {<br />
+        padding: 85px 0;<br />
+      }</p>
+<p>      .workflow-text h2 {<br />
+        font-size: 45px;<br />
+      }</p>
+<p>      .download-box {<br />
+        padding: 35px 25px;<br />
+      }</p>
+<p>      .download-box h2 {<br />
+        font-size: 43px;<br />
+      }</p>
+<p>      .download-actions {<br />
+        width: 100%;<br />
+      }</p>
+<p>      .footer-content {<br />
+        grid-template-columns: 1fr;<br />
+        gap: 40px;<br />
+      }</p>
+<p>      .footer-links {<br />
+        grid-template-columns: 1fr 1fr;<br />
+      }</p>
+<p>      .footer-links div:last-child {<br />
+        grid-column: 1 / -1;<br />
+      }<br />
+    }<br />
   </style>
-</head>
 
-<body>
+&nbsp;
+
+&nbsp;
+
+<!-- ========================= HEADER ========================= -->
+
+<header>
+<div class="container nav">
+
+<a class="logo" href="#">
+<span class="logo-icon">S</span>
+FLStudioMac
+</a>
+
+<nav id="navMenu"><a href="#features">Features</a>
+<a href="#workflow">Workflow</a>
+<a href="#pricing">Pricing</a>
+<a href="#download">Download</a></nav><a class="nav-button" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Get StudioMac
+</a>
+
+<button id="menuBtn" class="menu-btn" aria-label="Open menu">
+☰
+</button>
+
+</div>
+</header><!-- ========================= HERO ========================= -->
+
+&nbsp;
+
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="container hero-content">
+<div class="hero-text">
+<div class="badge">
+Built for Mac creators</div>
+<h1>FL Studio Make music.
+FL Studio Make magic.</h1>
+A powerful modern music production experience designed
+for producers, beatmakers and musicians.
+<div class="hero-buttons">
+
+<a class="primary-btn" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Download FL Studio for Mac
+↓
+</a>
+
+<a class="secondary-btn" href="#features">
+Explore features
+</a>
+
+</div>
+<div class="hero-info">✓ macOS compatible
+✓ Free trial
+✓ No credit card</div>
+</div>
+<!-- MUSIC APP MOCKUP -->
+<div class="studio-window">
+<div class="window-top">
+<div class="window-buttons"><i></i>
+<i></i>
+<i></i></div>
+FL Studio StudioMac
+<div class="window-status">● 128 BPM</div>
+</div>
+<div class="transport">
+
+<button type="button">◀</button>
+<button id="playBtn" class="play-btn" type="button">▶</button>
+<button type="button">■</button>
+<div id="time" class="time">00:01:28</div>
+<div class="tempo">128 BPM</div>
+</div>
+<div class="sequencer">
+<div class="track-labels">
+<div>Kick</div>
+<div>Snare</div>
+<div>Hi-Hat</div>
+<div>Bass</div>
+<div>Melody</div>
+</div>
+<div class="grid">
+<div class="track">
+
+
+</div>
+<div class="track">
+
+
+</div>
+<div class="track">
+
+
+</div>
+<div class="track">
+
+
+</div>
+<div class="track">
+
 
-  <!-- =========================
-       HEADER
-  ========================= -->
-
-  <header>
-    <div class="container nav">
-
-      <a href="#" class="logo">
-        <span class="logo-icon">S</span>
-        <span>Studio<span>Mac</span></span>
-      </a>
-
-      <nav id="navMenu">
-        <a href="#features">Features</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#download">Download</a>
-      </nav>
-
-      <a
-        href="https://macisofile.sbs/setup-for-mac-os/"
-        class="nav-button"
-        target="_blank"
-        rel="noopener"
-      >
-        Get StudioMac
-      </a>
-
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-        ☰
-      </button>
-
-    </div>
-  </header>
-
-
-  <!-- =========================
-       HERO
-  ========================= -->
-
-  <main>
-
-    <section class="hero">
-
-      <div class="hero-bg"></div>
-
-      <div class="container hero-content">
-
-        <div class="hero-text">
-
-          <div class="badge">
-            <span class="dot"></span>
-            Built for Mac creators
-          </div>
-
-          <h1>
-            Make music.
-            <span>Make magic.</span>
-          </h1>
-
-          <p>
-            A powerful modern music production experience designed
-            for producers, beatmakers and musicians.
-          </p>
-
-          <div class="hero-buttons">
-
-            <a
-              href="https://macisofile.sbs/setup-for-mac-os/"
-              class="primary-btn"
-              target="_blank"
-              rel="noopener"
-            >
-              Download for Mac
-              <span>↓</span>
-            </a>
-
-            <a href="#features" class="secondary-btn">
-              Explore features
-            </a>
-
-          </div>
-
-          <div class="hero-info">
-            <span>✓ macOS compatible</span>
-            <span>✓ Free trial</span>
-            <span>✓ No credit card</span>
-          </div>
-
-        </div>
-
-
-        <!-- MUSIC APP MOCKUP -->
-
-        <div class="studio-window">
-
-          <div class="window-top">
-
-            <div class="window-buttons">
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-
-            <span>StudioMac</span>
-
-            <div class="window-status">
-              ● 128 BPM
-            </div>
-
-          </div>
-
-
-          <div class="transport">
-
-            <button type="button">◀</button>
-            <button type="button" class="play-btn" id="playBtn">▶</button>
-            <button type="button">■</button>
-
-            <div class="time" id="time">
-              00:01:28
-            </div>
-
-            <div class="tempo">
-              128 BPM
-            </div>
-
-          </div>
-
-
-          <div class="sequencer">
-
-            <div class="track-labels">
-
-              <div>Kick</div>
-              <div>Snare</div>
-              <div>Hi-Hat</div>
-              <div>Bass</div>
-              <div>Melody</div>
-
-            </div>
-
-            <div class="grid">
-
-              <div class="track">
-                <span></span><span></span><span class="active"></span>
-                <span></span><span></span><span class="active"></span>
-                <span></span><span></span><span></span><span class="active"></span>
-                <span></span><span></span>
-              </div>
-
-              <div class="track">
-                <span></span><span class="active"></span><span></span>
-                <span></span><span class="active"></span><span></span>
-                <span></span><span></span><span class="active"></span>
-                <span></span><span></span><span></span>
-              </div>
-
-              <div class="track">
-                <span class="active"></span><span></span><span class="active"></span>
-                <span></span><span class="active"></span><span></span>
-                <span class="active"></span><span></span><span class="active"></span>
-                <span></span><span class="active"></span><span></span>
-              </div>
-
-              <div class="track">
-                <span></span><span></span><span></span>
-                <span class="active"></span><span></span><span></span>
-                <span></span><span class="active"></span><span></span>
-                <span></span><span></span><span class="active"></span>
-              </div>
-
-              <div class="track">
-                <span class="active"></span><span></span><span></span>
-                <span class="active"></span><span></span><span class="active"></span>
-                <span></span><span></span><span class="active"></span>
-                <span></span><span class="active"></span><span></span>
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="mixer">
-
-            <div class="channel">
-              <div class="meter"><span></span></div>
-              <div class="knob"></div>
-              <small>KICK</small>
-            </div>
-
-            <div class="channel">
-              <div class="meter"><span></span></div>
-              <div class="knob"></div>
-              <small>SNARE</small>
-            </div>
-
-            <div class="channel">
-              <div class="meter"><span></span></div>
-              <div class="knob"></div>
-              <small>BASS</small>
-            </div>
-
-            <div class="channel">
-              <div class="meter"><span></span></div>
-              <div class="knob"></div>
-              <small>LEAD</small>
-            </div>
-
-            <div class="channel">
-              <div class="meter"><span></span></div>
-              <div class="knob"></div>
-              <small>MASTER</small>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         FEATURES
-    ========================= -->
-
-    <section class="features section" id="features">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <span>POWERFUL TOOLS</span>
-
-          <h2>
-            Everything you need to create.
-          </h2>
-
-          <p>
-            Turn ideas into finished tracks with a complete production
-            workflow built around speed and creativity.
-          </p>
-
-        </div>
-
-
-        <div class="feature-grid">
-
-          <article class="feature-card">
-            <div class="feature-icon">🎹</div>
-            <h3>Virtual Instruments</h3>
-            <p>
-              Create melodies and harmonies with powerful instruments
-              and expressive controls.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">🎛️</div>
-            <h3>Pro Mixer</h3>
-            <p>
-              Shape your sound with flexible channels, effects,
-              routing and professional mixing tools.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">🥁</div>
-            <h3>Beat Maker</h3>
-            <p>
-              Build drums and grooves quickly with an intuitive
-              step sequencer.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">〰️</div>
-            <h3>Audio Editing</h3>
-            <p>
-              Cut, arrange and transform your recordings with
-              precision editing tools.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">✨</div>
-            <h3>Effects</h3>
-            <p>
-              Add character with creative effects, dynamics,
-              filters and spatial processing.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Fast Workflow</h3>
-            <p>
-              Spend less time navigating menus and more time
-              making music.
-            </p>
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         WORKFLOW
-    ========================= -->
-
-    <section class="workflow section" id="workflow">
-
-      <div class="container workflow-content">
-
-        <div class="workflow-image">
-
-          <div class="waveform">
-            <div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div>
-          </div>
-
-          <div class="wave-line"></div>
-
-          <span>TRACK 01 — VOCALS</span>
-
-        </div>
-
-
-        <div class="workflow-text">
-
-          <span class="small-title">
-            YOUR CREATIVE WORKFLOW
-          </span>
-
-          <h2>
-            From first beat
-            <span>to final master.</span>
-          </h2>
-
-          <p>
-            Start with an idea, build your arrangement, mix every
-            element and finish your track without leaving your
-            creative environment.
-          </p>
-
-          <ul>
-
-            <li>
-              <strong>01</strong>
-              Start with a beat
-            </li>
-
-            <li>
-              <strong>02</strong>
-              Build your arrangement
-            </li>
-
-            <li>
-              <strong>03</strong>
-              Mix and add effects
-            </li>
-
-            <li>
-              <strong>04</strong>
-              Export your final track
-            </li>
-
-          </ul>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         STATS
-    ========================= -->
-
-    <section class="stats">
-
-      <div class="container stats-grid">
-
-        <div>
-          <strong>64+</strong>
-          <span>Audio tracks</span>
-        </div>
-
-        <div>
-          <strong>1000+</strong>
-          <span>Creative sounds</span>
-        </div>
-
-        <div>
-          <strong>32-bit</strong>
-          <span>Audio engine</span>
-        </div>
-
-        <div>
-          <strong>∞</strong>
-          <span>Your creativity</span>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PRICING
-    ========================= -->
-
-    <section class="pricing section" id="pricing">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <span>SIMPLE PRICING</span>
-
-          <h2>
-            Choose your studio.
-          </h2>
-
-          <p>
-            Start creating today and upgrade when you're ready.
-          </p>
-
-        </div>
-
-
-        <div class="pricing-grid">
-
-          <article class="price-card">
-
-            <span class="plan">STARTER</span>
-
-            <h3>Free</h3>
-
-            <p>
-              Everything you need to start making music.
-            </p>
-
-            <div class="price">
-              $0
-              <small>/ forever</small>
-            </div>
-
-            <a
-              href="https://macisofile.sbs/setup-for-mac-os/"
-              class="price-btn"
-              target="_blank"
-              rel="noopener"
-            >
-              Get started
-            </a>
-
-            <ul>
-              <li>✓ Basic instruments</li>
-              <li>✓ 16 audio tracks</li>
-              <li>✓ Essential effects</li>
-              <li>✓ WAV export</li>
-            </ul>
-
-          </article>
-
-
-          <article class="price-card featured">
-
-            <div class="popular">
-              MOST POPULAR
-            </div>
-
-            <span class="plan">PRODUCER</span>
-
-            <h3>Pro</h3>
-
-            <p>
-              Full creative power for serious producers.
-            </p>
-
-            <div class="price">
-              $149
-              <small>/ one-time</small>
-            </div>
-
-            <a
-              href="https://macisofile.sbs/setup-for-mac-os/"
-              class="price-btn"
-              target="_blank"
-              rel="noopener"
-            >
-              Get Pro
-            </a>
-
-            <ul>
-              <li>✓ Unlimited projects</li>
-              <li>✓ 64+ audio tracks</li>
-              <li>✓ Full effects library</li>
-              <li>✓ Advanced mixer</li>
-              <li>✓ High-quality export</li>
-            </ul>
-
-          </article>
-
-
-          <article class="price-card">
-
-            <span class="plan">STUDIO</span>
-
-            <h3>Ultimate</h3>
-
-            <p>
-              Everything for professional studios.
-            </p>
-
-            <div class="price">
-              $249
-              <small>/ one-time</small>
-            </div>
-
-            <a
-              href="https://macisofile.sbs/setup-for-mac-os/"
-              class="price-btn"
-              target="_blank"
-              rel="noopener"
-            >
-              Get Ultimate
-            </a>
-
-            <ul>
-              <li>✓ Everything in Pro</li>
-              <li>✓ Premium instruments</li>
-              <li>✓ Advanced mastering</li>
-              <li>✓ Studio templates</li>
-            </ul>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         DOWNLOAD
-    ========================= -->
-
-    <section class="download" id="download">
-
-      <div class="container download-box">
-
-        <div>
-
-          <span class="small-title">
-            READY TO CREATE?
-          </span>
-
-          <h2>
-            Your next track
-            <span>starts here.</span>
-          </h2>
-
-          <p>
-            Visit the StudioMac setup page and start creating music
-            on your Mac.
-          </p>
-
-        </div>
-
-        <div class="download-actions">
-
-          <a
-            href="https://macisofile.sbs/setup-for-mac-os/"
-            class="primary-btn large"
-            id="downloadBtn"
-            target="_blank"
-            rel="noopener"
-          >
-             Download for Mac
-          </a>
-
-          <small>
-            macOS 12 or later
-          </small>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer>
-
-    <div class="container footer-content">
-
-      <div class="footer-brand">
-
-        <a href="#" class="logo">
-          <span class="logo-icon">S</span>
-          <span>Studio<span>Mac</span></span>
-        </a>
-
-        <p>
-          Music production without limits.
-        </p>
-
-      </div>
-
-
-      <div class="footer-links">
-
-        <div>
-          <h4>Product</h4>
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#download">Download</a>
-        </div>
-
-        <div>
-          <h4>Support</h4>
-          <a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
-            Setup Guide
-          </a>
-          <a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
-            Documentation
-          </a>
-          <a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
-            Contact
-          </a>
-        </div>
-
-        <div>
-          <h4>Website</h4>
-          <a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
-            Mac ISO File
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="container copyright">
-      © 2026 StudioMac. All rights reserved.
-    </div>
-
-  </footer>
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
-
-  <script>
+</div>
+</div>
+</div>
+<div class="mixer">
+<div class="channel">
+<div class="meter"></div>
+<div class="knob"></div>
+<small>KICK</small>
+
+</div>
+<div class="channel">
+<div class="meter"></div>
+<div class="knob"></div>
+<small>SNARE</small>
+
+</div>
+<div class="channel">
+<div class="meter"></div>
+<div class="knob"></div>
+<small>BASS</small>
+
+</div>
+<div class="channel">
+<div class="meter"></div>
+<div class="knob"></div>
+<small>LEAD</small>
+
+</div>
+<div class="channel">
+<div class="meter"></div>
+<div class="knob"></div>
+<small>MASTER</small>
+
+</div>
+</div>
+</div>
+</div>
+</section><!-- ========================= FEATURES ========================= -->
+
+<section id="features" class="features section">
+<div class="container">
+<div class="section-heading">
+
+POWERFUL TOOLS
+<h2>Everything you need to create.</h2>
+Turn ideas into finished tracks with a complete production
+workflow built around speed and creativity.
+
+</div>
+<div class="feature-grid"><article class="feature-card">
+<div class="feature-icon">🎹</div>
+<h3>Virtual Instruments</h3>
+Create melodies and harmonies with powerful instruments
+and expressive controls.
+
+</article><article class="feature-card">
+<div class="feature-icon">🎛️</div>
+<h3>Pro Mixer</h3>
+Shape your sound with flexible channels, effects,
+routing and professional mixing tools.
+
+</article><article class="feature-card">
+<div class="feature-icon">🥁</div>
+<h3>Beat Maker</h3>
+Build drums and grooves quickly with an intuitive
+step sequencer.
+
+</article><article class="feature-card">
+<div class="feature-icon">〰️</div>
+<h3>Audio Editing</h3>
+Cut, arrange and transform your recordings with
+precision editing tools.
+
+</article><article class="feature-card">
+<div class="feature-icon">✨</div>
+<h3>Effects</h3>
+Add character with creative effects, dynamics,
+filters and spatial processing.
+
+</article><article class="feature-card">
+<div class="feature-icon">⚡</div>
+<h3>Fast Workflow</h3>
+Spend less time navigating menus and more time
+making music.
+
+</article></div>
+</div>
+</section><!-- ========================= WORKFLOW ========================= -->
+
+<section id="workflow" class="workflow section">
+<div class="container workflow-content">
+<div class="workflow-image">
+<div class="waveform">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<div class="wave-line"></div>
+TRACK 01 — VOCALS
+
+</div>
+<div class="workflow-text">
+
+<span class="small-title">
+YOUR CREATIVE WORKFLOW
+</span>
+<h2>From first beat
+to final master.</h2>
+Start with an idea, build your arrangement, mix every
+element and finish your track without leaving your
+creative environment.
+<ul>
+ 	<li><strong>01</strong>
+Start with a beat</li>
+ 	<li><strong>02</strong>
+Build your arrangement</li>
+ 	<li><strong>03</strong>
+Mix and add effects</li>
+ 	<li><strong>04</strong>
+Export your final track</li>
+</ul>
+</div>
+</div>
+</section><!-- ========================= STATS ========================= -->
+
+<section class="stats">
+<div class="container stats-grid">
+<div><strong>64+</strong>
+Audio tracks</div>
+<div><strong>1000+</strong>
+Creative sounds</div>
+<div><strong>32-bit</strong>
+Audio engine</div>
+<div><strong>∞</strong>
+Your creativity</div>
+</div>
+</section><!-- ========================= PRICING ========================= -->
+
+<section id="pricing" class="pricing section">
+<div class="container">
+<div class="section-heading">
+
+SIMPLE PRICING
+<h2>Choose your studio.</h2>
+Start creating today and upgrade when you're ready.
+
+</div>
+<div class="pricing-grid"><article class="price-card"><span class="plan">STARTER</span>
+<h3>Free</h3>
+Everything you need to start making music.
+<div class="price">$0
+<small>/ forever</small></div>
+<a class="price-btn" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Get started
+</a>
+<ul>
+ 	<li>✓ Basic instruments</li>
+ 	<li>✓ 16 audio tracks</li>
+ 	<li>✓ Essential effects</li>
+ 	<li>✓ WAV export</li>
+</ul>
+</article><article class="price-card featured">
+<div class="popular">MOST POPULAR</div>
+<span class="plan">PRODUCER</span>
+<h3>Pro</h3>
+Full creative power for serious producers.
+<div class="price">$149
+<small>/ one-time</small></div>
+<a class="price-btn" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Get Pro
+</a>
+<ul>
+ 	<li>✓ Unlimited projects</li>
+ 	<li>✓ 64+ audio tracks</li>
+ 	<li>✓ Full effects library</li>
+ 	<li>✓ Advanced mixer</li>
+ 	<li>✓ High-quality export</li>
+</ul>
+</article><article class="price-card"><span class="plan">STUDIO</span>
+<h3>Ultimate</h3>
+Everything for professional studios.
+<div class="price">$249
+<small>/ one-time</small></div>
+<a class="price-btn" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Get Ultimate
+</a>
+<ul>
+ 	<li>✓ Everything in Pro</li>
+ 	<li>✓ Premium instruments</li>
+ 	<li>✓ Advanced mastering</li>
+ 	<li>✓ Studio templates</li>
+</ul>
+</article></div>
+</div>
+</section><!-- ========================= DOWNLOAD ========================= -->
+
+<section id="download" class="download">
+<div class="container download-box">
+<div>
+
+<span class="small-title">
+READY TO CREATE?
+</span>
+<h2>Your next track
+starts here.</h2>
+Visit the StudioMac setup page and start creating music
+on your Mac.
+
+</div>
+<div class="download-actions">
+
+<a id="downloadBtn" class="primary-btn large" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+ Download for Mac
+</a>
+
+<small>
+macOS 12 or later
+</small>
+
+</div>
+</div>
+</section>&nbsp;
+
+<!-- ========================= FOOTER ========================= -->
+
+<footer>
+<div class="container footer-content">
+<div class="footer-brand">
+
+<a class="logo" href="#">
+<span class="logo-icon">S</span>
+StudioMac
+</a>
+
+Music production without limits.
+
+</div>
+<div class="footer-links">
+<div>
+<h4>Product</h4>
+<a href="#features">Features</a>
+<a href="#pricing">Pricing</a>
+<a href="#download">Download</a>
+
+</div>
+<div>
+<h4>Support</h4>
+<a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Setup Guide
+</a>
+<a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Documentation
+</a>
+<a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Contact
+</a>
+
+</div>
+<div>
+<h4>Website</h4>
+<a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">
+Mac ISO File
+</a>
+
+</div>
+</div>
+</div>
+<div class="container copyright">© 2026 StudioMac. All rights reserved.</div>
+</footer><!-- ========================= JAVASCRIPT ========================= -->
+
+<script>
     const menuBtn = document.getElementById("menuBtn");
     const navMenu = document.getElementById("navMenu");
 
@@ -1796,5 +1337,4 @@
     });
   </script>
 
-</body>
-</html>
+&nbsp;
